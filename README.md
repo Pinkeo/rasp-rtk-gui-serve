@@ -168,8 +168,9 @@ then you can go to the url that ngrok genered for you
    ```
       sudo journalctl -u rtk-gui.service
    ```
-10. run the client sripts and ou should see it updates
+10. change the endpoint in client sript `geo_coords_dead_reckoning_CLIENT.py` instead of `localhost:5000` you should add your EC2 public IP with `/socket.io`
     ```
-    python3 geo_coords_dead_reckoning_CLIENT.py
+    async def send_location():
+    await sio.connect('http://your_ec2_public_IP/socket.io')
     ```
   
