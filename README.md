@@ -173,4 +173,4 @@ then you can go to the url that ngrok genered for you
     async def send_location():
     await sio.connect('http://your_ec2_public_IP/socket.io')
     ```
-  
+Now run the `geo_coords_dead_reckoning_CLIENT.py` and you should see data and location update in the webpage
