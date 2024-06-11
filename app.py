@@ -1,8 +1,11 @@
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*",logger=True, engineio_logger=True)
 
 gps_data = {}
 
@@ -30,4 +33,4 @@ def handle_gps_data(json_data):
     emit('update_map', gps_data, broadcast=True)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000,cors_allowed_origins='*',async_mode='eventlet')

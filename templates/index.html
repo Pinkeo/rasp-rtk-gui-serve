@@ -41,7 +41,7 @@
 
                 var marker = L.marker([0, 0]).addTo(map);
 
-                var socket = io.connect('http://' + document.domain + ':' + location.port + '/');
+                var socket = io.connect('ws://' + document.domain + ':' + location.port + '/');
 
                 socket.on('update_map', function(data) {
                     console.log('Data received:', data);  // Log received data
