@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}RTK-GUI{% endblock %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+    <p><a href="{{ url_for('home') }}">Go to Dashboard</a></p>
+{% else %}
+    <p>You need to <a href="{{ url_for('login') }}">login</a> to access Dashboard</p>
+{% endif %}
+<h1>Seeding Robot Dashboard</h1>
+<p>ນີ້ແມ່ນໂປຣເຈັກຂອງນັກສຶກສາພາກວິຊາວິສະວະກຳເອເລັກໂຕຣນິກ ແລະ ໂທລະຄົມມະນາຄົມ ນຳພາໂດຍ ປອ.ໂພສີ ປານທອງສີ, ປທ. ເທ້ປາລະມີ ແລະ ປທ.ນາງ ຕິກ ແສງທິບພະນີ</p>
+<p>ນັກສຶກສາ</p>
+<li> ນາງ ປິ່ນແກ້ວ ເຂັມຄຳພູມີ</li>
+<li> ນາງ ສຸລິນຸພອນ ບູນທະວົງ</li>
+<li> ທ້າວ ສູລິຍະ ອ່ອນຟ້າ</li>
+<li> ທ້າວ ປັນຍານຸວົງ ເລັ່ງສະຫວັດ</li>
+<!--
+<h3> Send us a message</h3>
+<form method="POST" action="/submit">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="email">your email</label>
+    <input type="email" id="email" name="email">
+    <label for="message">message</label>
+    <input type="text" id="message" name="message">
+    <input type="submit" value="Submit">
+</form>
+-->
+<h1>Contact Us</h1>
+
+    <form method="POST" action="{{ url_for('contact') }}">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

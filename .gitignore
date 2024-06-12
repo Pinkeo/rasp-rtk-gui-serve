@@ -1,2 +1,8 @@
 /venv
 
+.env
+
+rtk-contact-responses-9371f05057df.json
+__pycache__/
+winvenv/
+instance/
