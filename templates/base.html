@@ -12,9 +12,27 @@
 <body>
     <div class="navbar">
         <a href="/">Dashboard</a>
-        <a href="#">About</a>
-    </div>
+        <a href="{{url_for ('about')}}">About</a>
+       
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('profile')}}">{{ current_user.username }}</a>
+        <a href="{{ url_for ('logout')}}">Logout</a>
+        {% else %}
+        <a href="{{ url_for ('login')}}">Login</a>
+        <a href="{{ url_for ('register')}}">Register</a>
 
+        {% endif %}
+
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 
     {% block content %}
     {% endblock %}
