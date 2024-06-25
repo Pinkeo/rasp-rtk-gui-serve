@@ -1,36 +1,83 @@
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Noto Serif Lao", serif !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style-type:none;
-}
-
-#map {
-        
-    width: 100%;
-    height: 50vh;
-    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #333;
-    padding: 20px 50px;
+    padding: 10px 20px;
+    position: relative;
 }
 .navbar a {
     color: white;
+    padding: 14px 20px;
     text-decoration: none;
-    padding: 8px 16px;
+    text-align: center;
 }
 .navbar a:hover {
     background-color: #ddd;
     color: black;
 }
+.menu {
+    display: flex;
+}
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #333;
+        z-index: 1;
+    }
+    .menu.show {
+        display: flex;
+    }
+    .navbar a {
+        display: block;
+        padding: 10px;
+        border-top: 1px solid #444;
+    }
+    .hamburger {
+        display: flex;
+    }
+}
 .container {
     width: 100%;
-    padding: 20px;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.row{
+    --bs-gutter-x: 5.3 rem !important;
+}
+.content{
+    margin:20px;
+}
+@media (min-width:) {
+    
 }
 .header, .footer {
     text-align: center;
@@ -40,11 +87,13 @@ body {
 .dashboard {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin:10px;
 }
 .section {
-    width: 45%;
+    width: 100%;
     margin: 10px 0;
+    text-align: center;
 }
 .status, .map, .camera, .seeding-point {
     padding: 10px;
@@ -58,26 +107,127 @@ body {
     border: 0;
     border-radius: 5px;
 }
-.footer{
-width: 100%;
-display: inline-flex;
-
-align-items: center;
+footer {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin-top: auto;
+    width: 100%;
 
 }
-.footer img {
+footer img {
+    max-width: 200px; /* Set a max width to prevent it from being too large */
     width: auto;
-    height: auto; 
+    height: auto;
 }
-.footer p{
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-display: block;
+footer p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    footer img {
+        max-width: 100px; /* Adjust max-width for smaller screens */
+    }
+    footer p {
+        font-size: 12px;
+    }
+
+}
+
 @media (max-width: 768px) {
     .section {
         width: 100%;
     }
+}
+
+#map { height: 560px; width: 100%; }
+
+
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 300px;
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.form-group .error {
+    color: red;
+    font-size: 0.9em;
+}
+.form-group .remember {
+
+    align-items: left;
+}
+.form-group .remember input {
+    align-items: left;
+    margin-right: 5px;
+}
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+h1{
+    text-align: center;
+    padding: 30px;
+}
+
+content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.content div {
+    flex: 1;
+    margin: 0 20px;
+    padding: 20px 40px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.status-box, .info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    bottom: 0;
+}
+.status-box div, .info-box div {
+    margin: 10px 0;
+
 }

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+    <title>Seeding Robot v.1 Testing</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Seeding Robot v.1 Testing</h1>
+        </div>
+        <div class="dashboard">
+            
+                <div class="section status">
+                    <ul>
+                        <li id="longitude">longitude: </li>
+                        <li id="latitude">latitude: </li>
+                        <li id="heading">heading: </li>
+                        <li id="heading">Heading: </li>
+                        <li id="roll">Roll: </li>
+                        <li id="pitch">Pitch: </li>
+                        <li id="roll-acceleration">Roll Acceleration: </li>
+                        <li id="pitch-acceleration">Pitch Acceleration: </li>
+                        <li id="heading-acceleration">Heading Acceleration: </li>
+                    </ul>
+                </div>
+            
+            
+            <div class="section map">
+                <h3>Leaflet Map</h3>
+                <div id="map"></div>
+            </div>
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+            <script>
+                var map = L.map('map').setView([0, 0], 2);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                var marker = L.marker([0, 0]).addTo(map);
+
+                var socket = io.connect('ws://' + document.domain + ':' + location.port + '/');
+
+                socket.on('update_map', function(data) {
+                    console.log('Data received:', data);  // Log received data
+                    var lat = parseFloat(data.latitude);
+                    var lon = parseFloat(data.longitude);
+                    console.log('Updating marker position to:', lat, lon);  // Log new marker position
+                    marker.setLatLng([lat, lon]);
+                    map.setView([lat, lon], 25);
+                    
+                    
+                    // Update the status section
+                    document.getElementById('longitude').innerText = 'longitude: ' + data.longitude;
+                    document.getElementById('latitude').innerText = 'latitude: ' + data.latitude;
+                    document.getElementById('heading').innerText = 'heading: ' + data.heading;
+                    document.getElementById('heading').innerText = 'Heading: ' + data.Heading;
+                    document.getElementById('roll').innerText = 'Roll: ' + data.Roll;
+                    document.getElementById('pitch').innerText = 'Pitch: ' + data.Pitch;
+                    document.getElementById('roll-acceleration').innerText = 'Roll Acceleration: ' + data["Roll Acceleration"];
+                    document.getElementById('pitch-acceleration').innerText = 'Pitch Acceleration: ' + data["Pitch Acceleration"];
+                    document.getElementById('heading-acceleration').innerText = 'Heading Acceleration: ' + data["Heading Acceleration"];
+
+                });
+            </script>
+        </div>
+    </div>
+</body>
+{% endblock %}

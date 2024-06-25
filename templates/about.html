@@ -3,31 +3,45 @@
 
 {% block content %}
 {% if current_user.is_authenticated %}
-    <p><a href="{{ url_for('home') }}">Go to Dashboard</a></p>
-{% else %}
-    <p>You need to <a href="{{ url_for('login') }}">login</a> to access Dashboard</p>
-{% endif %}
-<h1>Seeding Robot Dashboard</h1>
-<p>ນີ້ແມ່ນໂປຣເຈັກຂອງນັກສຶກສາພາກວິຊາວິສະວະກຳເອເລັກໂຕຣນິກ ແລະ ໂທລະຄົມມະນາຄົມ ນຳພາໂດຍ ປອ.ໂພສີ ປານທອງສີ, ປທ. ເທ້ປາລະມີ ແລະ ປທ.ນາງ ຕິກ ແສງທິບພະນີ</p>
-<p>ນັກສຶກສາ</p>
-<li> ນາງ ປິ່ນແກ້ວ ເຂັມຄຳພູມີ</li>
-<li> ນາງ ສຸລິນຸພອນ ບູນທະວົງ</li>
-<li> ທ້າວ ສູລິຍະ ອ່ອນຟ້າ</li>
-<li> ທ້າວ ປັນຍານຸວົງ ເລັ່ງສະຫວັດ</li>
-<!--
-<h3> Send us a message</h3>
-<form method="POST" action="/submit">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <label for="email">your email</label>
-    <input type="email" id="email" name="email">
-    <label for="message">message</label>
-    <input type="text" id="message" name="message">
-    <input type="submit" value="Submit">
-</form>
--->
-<h1>Contact Us</h1>
 
+{% else %}
+    <p style="text-align: center;">You need to <a href="{{ url_for('login') }}">login</a> to access Dashboard</p>
+{% endif %}
+<div class="container">
+    <h1>About Us</h1>
+    <div class="content">
+    <p>ນີ້ແມ່ນສ່ວນໜຶ່ງຂອງຜົນງານນັກສຶກສາຈາກພາກວິຊາວິສະວະກຳເອເລັກໂຕນິກ ແລະ ໂທລະຄົມມະນາຄົມ ສົກຮຽນປີ 2023 - 2024 ເຊິ່ງປະກອບມີ:</p>
+    <li> ນາງ ປິ່ນແກ້ວ ເຂັມຄຳພູມີ</li>
+    <li> ນາງ ສຸລິນຸພອນ ບຸນທະວົງ</li>
+    <li> ທ້າວ ສູລິຍະ ອ່ອນຟ້າ</li>
+    <li> ທ້າວ ປັນຍານຸວົງ ເລັ່ງສະຫວັດ</li>
+    <p>ນຳພາໂດຍອາຈານ:</p>
+    <li> ປອ ໂພສີ ປານທອງສີ</li>
+    <li> ປທ ນາງ ຕິກ ແສງທິບພະນີ</li>
+    <li> ປທ ເທ້ ປາລະມີ</li>
+    </div>
+   </div> 
+<div class="container">
+    <div class="content">
+    <p>This is a part of a project by enginerring student from Department of Eletronic and Telecommunication, Faculty of Engineeering, National University of Laos, Class of 2024 which include:</p>
+    <li> Pinkeo Khemkhamphoumee</li>
+    <li> Soulinouphone Bounthavong</li>
+    <li> Souliya Onfar</li>
+    <li> Punyanouvong Lengsawut</li>
+    <p>Advisors:</p>
+    <li>Dr Phosy Panthongsy</li>
+    <li>Tik Seangthipphany</li>
+    <li>Thay Palamy</li>
+</div>
+
+
+
+<div class="content">
+<h3>Contact</h3>
+<p> email: <a href="mailto:pinkeokkpm@gmail.com">pinkeokkpm@gmail.com </a> </p>
+</div>
+</div>
+<!--
     <form method="POST" action="{{ url_for('contact') }}">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
@@ -40,4 +54,6 @@
         
         <input type="submit" value="Submit">
     </form>
+-->
+</div>
 {% endblock %}
