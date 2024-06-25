@@ -35,15 +35,15 @@ def mapbox_token():
 
 
 # Google Sheets API credentials
-GOOGLE_SHEET_CREDS = os.getenv('GOOGLE_SHEET_CREDS')
-GOOGLE_SHEET_NAME = os.getenv('GOOGLE_SHEET_NAME') 
+#GOOGLE_SHEET_CREDS = os.getenv('GOOGLE_SHEET_CREDS')
+#GOOGLE_SHEET_NAME = os.getenv('GOOGLE_SHEET_NAME') 
 
 
 # Initialize Google Sheets API
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_SHEET_CREDS, scope)
-client = gspread.authorize(creds)
-sheet = client.open(GOOGLE_SHEET_NAME).sheet1
+#scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+#creds = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_SHEET_CREDS, scope)
+#client = gspread.authorize(creds)
+#sheet = client.open(GOOGLE_SHEET_NAME).sheet1
 
 
 app.secret_key = os.getenv('KEY')
