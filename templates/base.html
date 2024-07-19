@@ -35,7 +35,7 @@
 
             {% if current_user.is_authenticated %}
 	    <a href="{{ url_for('about') }}">About</a>	
-            <a href="{{ url_for('profile') }}">{{ current_user.username }}</a>
+            <a href="#">{{ current_user.username }}</a>
             <a href="{{ url_for('logout') }}">Logout</a>
             {% else %}
 	    <a href="{{ url_for('about')}}"> About </a>
@@ -68,7 +68,8 @@
 
     <footer>
         <img src="static/assets/imgs/image1.png" alt="University Logo">
-        <p>Department of Telecommunication Engineering<br>Faculty of Engineering<br>National University of Laos</p>    
+	<img src="https://logodix.com/logo/1744036.png" alt="JICA Logo">  
+      <p>Department of Telecommunication Engineering<br>Faculty of Engineering<br>National University of Laos<br>Supported by JICA</p>    
     </footer>
 
 </body>

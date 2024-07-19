@@ -2,16 +2,18 @@
 {% block content %}
 
 <head>
-    <title>Seeding Robot v.1 Testing</title>
+    <title>Seeding Robot</title>
 </head>
 <body>
 	<div class="container">
-            <h1>Seeding Robot v.1 Testing</h1>
+            <h1>Seeding Robot v.1</h1>
             <div class="content row">
                 <div class="status-box">
                   <p id="status">Status: </p>
-                  <p id="uptime">Uptime: </p>
-                  <p id="distance">Moving Distance:</p>
+                  <p id="longitude">longitude: </p>
+                  <p id="latitude">latitude: </p>
+
+                  
                   
         
                    
@@ -20,15 +22,14 @@
                     <p id="roll-acceleration">Roll Acceleration: </p>
                     <p id="pitch-acceleration">Pitch Acceleration: </p>
                     -->
-		    <p id="heading-acceleration">Heading Acceleration: </p>
+
         
                 </div>
                 <div class="info-box">
-                    <p id="longitude">longitude: </p>
-                    <p id="latitude">latitude: </p>
-                    <p id="heading">Heading: </p>
-		    <p id= "speed"> Speed: </p>
-
+                 
+		    <p id="heading-acceleration">Heading Acceleration: </p>
+		    <p id= "speed"> Speed(mm/s): </p>
+		    <p id="distance"> Total Moving Distance (m): </p>
                 </div>
               </div>
     </div>
@@ -80,14 +81,14 @@
                 }).addTo(map); */
 
                 // Uncomment the below code to use Mapbox Satellite layer
-                
+
                 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
                     attribution: '© Mapbox © OpenStreetMap',
                     maxZoom: 20,
                     tileSize: 512,
                     zoomOffset: -1
                 }).addTo(map);
-        
+
                 var marker = L.marker([0, 0]).addTo(map);
 
                 var robotPath = [];
@@ -108,21 +109,45 @@
 
                     document.getElementById('longitude').innerText = 'longitude: ' + data.longitude;
                     document.getElementById('latitude').innerText = 'latitude: ' + data.latitude;
-                    document.getElementById('heading').innerText = 'heading: ' + data.heading;
+                 //   document.getElementById('heading').innerText = 'heading: ' + data.heading;
                    // document.getElementById('roll').innerText = 'Roll: ' + data.Roll;
                    // document.getElementById('pitch').innerText = 'Pitch: ' + data.Pitch;
                    // document.getElementById('roll-acceleration').innerText = 'Roll Acceleration: ' + data["Roll Acceleration"];
                   //  document.getElementById('pitch-acceleration').innerText = 'Pitch Acceleration: ' + data["Pitch Acceleration"];
-                    document.getElementById('heading-acceleration').innerText = 'Heading Acceleration: ' + data["Heading Acceleration"];
-                
-		    document.getElementById('speed').innerText = 'speed: ' + data.speed;
-});
-            })
+                    document.getElementById('heading-acceleration').innerText = 'Heading Acceleration: ' + data["Heading_Acceleration"];
+		    document.getElementById('distance').innerText = 'Total Moving Distance (m): ' + data.distance;
+                    document.getElementById('speed').innerText = 'speed(mm/s): ' + data.speed;
+                });
+
+                socket.on('status_update', function(data) {
+                    var statusElement = document.getElementById('status');
+                    if (statusElement) {
+                        statusElement.innerText = 'Status: ' + data.status;
+                    } else {
+                        console.error('Status element not found');
+                    }
+                });
+
+                setInterval(function() {
+                    fetch('/heartbeat_status')
+                        .then(response => response.json())
+                        .then(data => {
+                            var statusElement = document.getElementById('status');
+                            if (statusElement) {
+                                statusElement.innerText = 'Status: ' + data.status;
+                            } else {
+                                console.error('Status element not found');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching heartbeat status:', error);
+                        });
+                }, 5000); // Check status every 5 seconds
+})
             .catch(error => {
                 console.error('Error fetching Mapbox access token:', error);
             });
     });
-
             </script>
         </div>
     </div>

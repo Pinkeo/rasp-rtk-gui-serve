@@ -116,7 +116,7 @@ footer {
 
 }
 footer img {
-    max-width: 200px; /* Set a max width to prevent it from being too large */
+    max-width: 100px; /* Set a max width to prevent it from being too large */
     width: auto;
     height: auto;
 }
